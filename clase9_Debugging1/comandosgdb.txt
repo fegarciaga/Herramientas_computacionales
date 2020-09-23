@@ -1,0 +1,26 @@
+Comandos utiles en gbd (debugging)
+ - Desde la consola:
+   Para acceder a los simbolos de debugging se debe incluir la bandera -g en
+   la compilacion.
+
+   El comando gdb ./a.out (o name.x) permite acceder a gdb (incluir la
+   bandera --tui despliega una interfaz grafica)
+
+   run: corre el ejecutable
+   break (abreviado br): genera un breakpoint, este puede ser una funcion
+   (se incluye el nombre de la funcion), una linea de codigo, o una variable.
+   El breakpoint puede ser condicional, monitoreando solo los cambios
+   especificados (break file.x: line if condition)
+   list: muestra el codigo
+   next (n): pasa a la siguiente linea de codigo OJO si la linea hace
+   referencia a una funcion adicional del programa, next omite los pasos
+   incluidos en la declaracion de la funcion
+   watch variable monitorea los cambios de la variable especificada, funciona
+   como un breakpoint
+
+ - Desde Emacs:
+   Tambien se puede ejecutar gdb desde emacs. Para acceder a la consola de
+   emacs se imprime esc x.
+   Una vez en la consola, se busca el comando gdb y se ejecuta con enter.
+   Tambien se puede ejetucar gdb many windows para mayor facilidad del
+   debug.
