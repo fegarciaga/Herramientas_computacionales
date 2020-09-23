@@ -17,6 +17,9 @@ Comandos utiles en gbd (debugging)
    incluidos en la declaracion de la funcion
    watch variable monitorea los cambios de la variable especificada, funciona
    como un breakpoint
+   step (s): pasa a la siguiente instruccion pero si se incluyen las instruc
+   ciones dentro de las funciones definidas
+   continue (c): termina de correr el ejecutable
 
  - Desde Emacs:
    Tambien se puede ejecutar gdb desde emacs. Para acceder a la consola de
