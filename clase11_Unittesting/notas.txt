@@ -1,0 +1,3 @@
+Unit Testing.
+
+(Operador ternario ? (if / else compacto) cond ? (if true): (if false))
