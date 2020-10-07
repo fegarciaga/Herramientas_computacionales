@@ -1,0 +1,17 @@
+El profiling más básico se puede hacer manulamente, midiendo el tiempo de
+ejecucion de cada función empleada. En c++ esto se puede hacer incluyendo la
+libreria estantar chrono. Un ejemplo se observa en el archivo manual_timing.cpp.
+Se debe repetir el proceso para obtener un tiempo medio de procesamiento
+
+Para habilitar el profiling se deben incluir banderas de profiling (-pg), después se
+debe ejecutar el a.out (Importante no abrir con gprof antes de ejecutar). Al ejecutar el archivo se creará otro archivo
+(gmon.out archivo binario, no se abre). Para obtener la información de los tiempos de procesamiento, se introduce el comando gprof ./a.out, que determina
+el porcentaje de tiempo empleado en cada una de las funciones del código (el
+codigo debe estar modularizado) esto se imprime en el flat profile. Despues se
+imprime el granularity, que indica que funciones utiliza cada funcion (en caso
+de que una funcion llame a otra)
+
+Perf también es otra herramienta de profiling (solo en linux). Primero se
+introduce el comando perf stat ./a.out para un resumen del tiempo de ejecución.
+Para un reporte como gprof se usan los comandos perf record ./a.out y después
+perf report.
