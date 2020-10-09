@@ -1,0 +1,112 @@
+--------------------------------------------------------------------------------
+I1 cache:         32768 B, 64 B, 8-way associative
+D1 cache:         32768 B, 64 B, 8-way associative
+LL cache:         8388608 B, 64 B, 16-way associative
+Command:          ./a.out 5000 6000
+Data file:        cachegrind.out.2366
+Events recorded:  Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Events shown:     Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Event sort order: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Thresholds:       0.1 100 100 100 100 100 100 100 100
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir            I1mr  ILmr  Dr          D1mr   DLmr  Dw         D1mw       DLmw       
+--------------------------------------------------------------------------------
+1,442,379,678 1,743 1,680 690,593,293 14,557 8,580 90,202,249 37,502,513 11,254,077  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir          I1mr ILmr Dr          D1mr  DLmr  Dw         D1mw       DLmw       file:function
+--------------------------------------------------------------------------------
+510,055,013    3    3 240,025,004     0     0 30,005,005  3,750,000 3,750,000  /home/live/Herrcomp/clase13_profiling2/example.cpp:option1(long*, int, int)
+510,055,013    1    1 240,025,004     0     0 30,005,005 30,000,000 3,754,227  /home/live/Herrcomp/clase13_profiling2/example.cpp:option2(long*, int, int)
+420,000,013    1    1 210,000,005     0     0 30,000,005  3,750,001 3,748,227  /home/live/Herrcomp/clase13_profiling2/example.cpp:option3(long*, int, int)
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/Herrcomp/clase13_profiling2/example.cpp
+--------------------------------------------------------------------------------
+Ir          I1mr ILmr Dr          D1mr DLmr Dw         D1mw       DLmw      
+
+-- line 8 ----------------------------------------
+          .    .    .           .    .    .          .          .         .  */
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .  void print_elapsed(auto start, auto end );
+          .    .    .           .    .    .          .          .         .  void option1 (long * data, int nx, int ny);
+          .    .    .           .    .    .          .          .         .  void option2 (long * data, int nx, int ny);
+          .    .    .           .    .    .          .          .         .  void option3 (long * data, int nx, int ny);
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .  int main(int argc, char **argv)
+          5    1    1           0    0    0          3          0         0  {
+          2    0    0           1    0    0          0          0         0    if (argc < 3){
+          .    .    .           .    .    .          .          .         .      printf("Usage: cacheTest sizeI sizeJ\nIn first input.\n");
+          .    .    .           .    .    .          .          .         .      return 1;
+          .    .    .           .    .    .          .          .         .    }
+          7    0    0           2    1    0          2          0         0    long sI = atoi(argv[1]); //Tamaño de la matriz a generar
+          7    1    1           2    0    0          2          0         0    long sJ = atoi(argv[2]);
+          .    .    .           .    .    .          .          .         .  
+          2    0    0           0    0    0          2          0         0    auto start = std::chrono::steady_clock::now();
+          .    .    .           .    .    .          .          .         .    
+          6    0    0           2    0    0          1          0         0    printf("Operating on matrix of size %ld by %ld\n", sI, sJ);
+          .    .    .           .    .    .          .          .         .  
+          9    1    1           2    0    0          2          0         0    long *arr = new long[sI*sJ]; // double array.
+          2    0    0           0    0    0          2          0         0    auto end = std::chrono::steady_clock::now();
+          5    0    0           2    0    0          1          0         0    print_elapsed(start, end); //Mide cuanto tiempo se demora en pedir memoria
+          .    .    .           .    .    .          .          .         .    
+          .    .    .           .    .    .          .          .         .    // option 1 llena la matriz por filas
+          2    1    1           0    0    0          2          0         0    start = std::chrono::steady_clock::now();
+          8    0    0           3    0    0          1          0         0    option1(arr, sI, sJ);
+          2    0    0           0    0    0          2          1         1    end = std::chrono::steady_clock::now();
+          5    0    0           2    0    0          1          0         0    print_elapsed(start, end);
+          .    .    .           .    .    .          .          .         .    
+          .    .    .           .    .    .          .          .         .    // option 2 llena la matriz por columnas
+          2    0    0           0    0    0          2          0         0    start = std::chrono::steady_clock::now();
+          8    1    1           3    0    0          1          0         0    option2(arr, sI, sJ);
+          2    0    0           0    0    0          2          1         1    end = std::chrono::steady_clock::now();
+          5    0    0           2    0    0          1          0         0    print_elapsed(start, end);
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .    // option 3 llena la matriz como un arreglo unidimensional
+          2    0    0           0    0    0          2          0         0    start = std::chrono::steady_clock::now();
+          8    1    1           3    0    0          1          0         0    option3(arr, sI, sJ);
+          2    0    0           0    0    0          2          1         1    end = std::chrono::steady_clock::now();
+          5    0    0           2    0    0          1          0         0    print_elapsed(start, end);
+          .    .    .           .    .    .          .          .         .  
+          6    0    0           2    1    1          1          0         0    printf("%ld\n", arr[0]);
+          .    .    .           .    .    .          .          .         .    
+          2    0    0           0    0    0          0          0         0    return 0;
+          2    0    0           2    0    0          0          0         0  }
+          .    .    .           .    .    .          .          .         .    
+          .    .    .           .    .    .          .          .         .  
+         24    1    1           0    0    0         16          0         0  void print_elapsed(auto start, auto end )
+          .    .    .           .    .    .          .          .         .  {
+          .    .    .           .    .    .          .          .         .      // Funcion que imprime el lapso de tiempo entre dos procesos
+         16    0    0           0    0    0          4          0         0    std::cout << "Elapsed time in ms: "
+         64    0    0           0    0    0         24          0         0              << std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()
+         12    0    0           0    0    0          4          0         0              << "\n";
+         20    0    0          12    0    0          0          0         0  }
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .  void option1 (long * data, int nx, int ny)
+          5    1    1           0    0    0          4          0         0  {
+     30,005    0    0      15,002    0    0          1          0         0    for (long i=0; i < nx; ++i)
+180,025,000    2    2  90,010,000    0    0      5,000          0         0      for (long j=0; j < ny; ++j)
+330,000,000    0    0 150,000,000    0    0 30,000,000  3,750,000 3,750,000        data[(i * (ny)) + j ] = i; 
+          3    0    0           2    0    0          0          0         0  }
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .  void option2 (long * data, int nx, int ny)
+          5    0    0           0    0    0          4          0         0  {
+     30,005    0    0      15,002    0    0          1          0         0    for (long i=0; i < nx; ++i)
+180,025,000    0    0  90,010,000    0    0      5,000          0         0        for (long j=0; j < ny; ++j)
+330,000,000    1    1 150,000,000    0    0 30,000,000 30,000,000 3,754,227           data[(j * (nx)) + i ] = i;
+          3    0    0           2    0    0          0          0         0  }
+          .    .    .           .    .    .          .          .         .  
+          .    .    .           .    .    .          .          .         .  void option3 (long * data, int nx, int ny)
+          5    1    1           0    0    0          4          0         0  {
+420,000,005    0    0 210,000,003    0    0 30,000,001  3,750,001 3,748,227    for (int i=0; i < nx*ny; ++i) data[i] = i;
+         22    2    2           8    0    0          5          0         0  }
+
+--------------------------------------------------------------------------------
+Ir            I1mr ILmr Dr          D1mr DLmr Dw         D1mw       DLmw       
+--------------------------------------------------------------------------------
+1,440,110,300   14   14 690,050,061    2    1 90,010,102 37,500,004 11,252,457  events annotated
+

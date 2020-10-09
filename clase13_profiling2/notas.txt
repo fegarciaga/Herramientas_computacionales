@@ -1,0 +1,23 @@
+Profiling usando valgrind.
+
+Valgrind posee dos herramientas para hacer profiling.
+1 callgrind:
+  Se activa usando la bandera --tool=callgrind (se debe compilar con -g
+  previamente)
+  Valgrind es mas lento que una compilacion normal. La ejecucion con valgrind
+  genera un archivo callgrind.out.PID Para acceder a la informacion de profiling
+  se ingresa el comando callgrind_annotate --auto=yes callgrind.out.PID
+  donde PID es el process identifier. PID se debe reemplazar por el numero
+  especifico del .out Valgrind da el tiempo de computo linea a linea
+
+2 cachegrind (busca perdidas de cache)
+  Se activa con --tool=cachegrind y genera un archivo cachegrind.out.PID
+  Para acceder a la informacion de profiling se ingresa el comando
+  cg_annotate --auto=yes cachegrind.out.PID
+
+
+Tecnicas de optimizacion:
+El compilador tiene varias banderas de optimizacion (se puede perder presicion).
+-O1 -O2 -O3 agregan niveles de optimizacion.
+Tambien es util reducir las perdidas en la cache. Reducir la operacion por
+bloques. Evitar if en for anidados

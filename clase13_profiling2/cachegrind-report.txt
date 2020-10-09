@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+I1 cache:         32768 B, 64 B, 8-way associative
+D1 cache:         32768 B, 64 B, 8-way associative
+LL cache:         8388608 B, 64 B, 16-way associative
+Command:          ./example.x 5000 5000
+Data file:        cachegrind.out.2863
+Events recorded:  Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Events shown:     Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Event sort order: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Thresholds:       0.1 100 100 100 100 100 100 100 100
+Include dirs:     
+User annotated:   
+Auto-annotation:  off
+
+--------------------------------------------------------------------------------
+Ir            I1mr  ILmr  Dr          D1mr   DLmr  Dw         D1mw       DLmw      
+--------------------------------------------------------------------------------
+1,202,382,481 1,742 1,680 575,593,854 14,552 8,579 75,202,253 31,252,513 9,377,373  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir          I1mr ILmr Dr          D1mr  DLmr  Dw         D1mw       DLmw       file:function
+--------------------------------------------------------------------------------
+425,055,013    3    3 200,025,004     0     0 25,005,005  3,125,000 3,125,000  /home/live/Herrcomp/clase13_profiling2/example.cpp:option1(long*, int, int)
+425,055,013    1    1 200,025,004     0     0 25,005,005 25,000,000 3,127,875  /home/live/Herrcomp/clase13_profiling2/example.cpp:option2(long*, int, int)
+350,000,013    1    1 175,000,005     0     0 25,000,005  3,125,001 3,122,875  /home/live/Herrcomp/clase13_profiling2/example.cpp:option3(long*, int, int)
+
