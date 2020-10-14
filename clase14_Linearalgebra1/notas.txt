@@ -1,0 +1,3 @@
+BLAS: basic linear algebra subrutines. Rutinas estándar.
+
+GNU: No solo incluye algebra lineal.
