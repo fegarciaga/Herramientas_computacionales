@@ -1,0 +1,3 @@
+Un archivo .sh es un script para la consola, se ejecuta con bash script.sh.
+También se pueden hacer scripts para gnuplot con la terminacion .gp y se
+ejecutan con gnuplot script.gh
