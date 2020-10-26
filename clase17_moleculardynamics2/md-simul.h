@@ -5,8 +5,8 @@
 #include "particle.h"
 
 const double G = -9.81;
-const int NSTEPS = 1000;
-const double DT = 0.01;
+const int NSTEPS = 10000;
+const double DT = 0.001;
 const double K = 253.57;
 const double Xwall =3.0;
 const double Ywall =3.0;

@@ -16,10 +16,10 @@ int main(void)
     time_integration(ball, DT);
     compute_force(ball);
     print(ball, istep*DT);
-    if(istep % 10 ==0){
+    if(istep % 100 ==0){
       std::string fname = "post/datos-" +std::to_string(istep)+ ".csv";
     std::ofstream fout (fname);
-      fout<< ball.Rx <<", "<< ball.Ry <<", "<<ball.Rz
+    fout<< ball.Rx <<", "<< ball.Ry <<", "<<ball.Rz<<", "
           << ball.mass <<", "<< ball.rad<<"\n";
       fout.close();
     }
