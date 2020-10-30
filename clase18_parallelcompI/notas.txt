@@ -1,0 +1,29 @@
+Programacion con openmp
+Se debe incluir el comando #pragma omp parallel, que indica la porcion del
+codigo a paralelizar
+
+Para indicar el numero de hilos se incluye el comando en la consola export
+OMP_NUM_THREADS=numero de procesor
+
+En la compilacion se debe incluir la bandera -fopenmp, que permite interpretar
+el comando #pragma
+
+omp_get_thread_num(): obtiene el thread correspondiente
+omp_get_num_threads(): obtiene el numero total de threads
+
+
+Programacion con MPI:
+
+Siempre se debe incluir el MPI_Init(&argc, &argv), Tambien se debe incluir
+MPI_Finalize(); para terminar el porceso.
+
+MPI_Comm_size(MPI_COMM_WORLD, &size) retorna el tamaño total de procesos (se
+debe inicializar la variable size previamente)
+
+MPI_Comm_size(MPI_COMM_WORLD, &rank) retorna quien es
+
+Para compilar se usa mpic++ main.cpp, que incluye los encabezados y las
+declaraciones
+
+Para ejecutar se usa mpirun, que corre por defecto con el numero maximo de
+procesadores en el pc, con -np se indica el numero de procesos
