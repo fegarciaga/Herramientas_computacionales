@@ -1,5 +1,5 @@
 echo "Strating scaling with system size: 6000000"
-for NTH in 1 2 4  8; do
+for NTH in 1 2 4 8 16; do
     echo -n "$NTH   ";
     mpirun -np $NTH --oversubscribe ./a.out 6000000  0 100; 
 done > scaling-6000000.txt
